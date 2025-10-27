@@ -2,14 +2,15 @@ tasks = []
 while true
   system "clear"
   tasks.each_with_index do |task,index|
-    puts "#{index + 1}. #{task}"
+    checkbox = task[:completed] ? "[ X ]" : "[ ]"
+    puts "#{index + 1}. #{checkbox} #{task[:title]}"
   end
   puts "[A]dd, [T]oggle, [D]elete, [Q]uit"
   input = gets.chomp.downcase
   if input == "a"
     puts "What is the task?"
     input_task = gets.chomp
-    tasks << input_task
+    tasks << {title: input_task, completed: false}
   elsif input == "t"
     puts "Which task do you want to update"
     input_toggle = gets.chomp.to_i
